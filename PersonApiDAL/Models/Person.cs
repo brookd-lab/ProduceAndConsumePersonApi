@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ConsumePersonApi.Models
+namespace PersonApiDAL.Models
 {
     public class Person
     {

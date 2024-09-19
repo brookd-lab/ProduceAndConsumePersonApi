@@ -1,7 +1,7 @@
-﻿using ConsumePersonApi.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using PersonApiDAL.Models;
 
 namespace ConsumePersonApi.Controllers
 {

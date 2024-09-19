@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PersonApi.Data;
-using PersonApi.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PersonApiDAL.Context;
+using PersonApiDAL.Models;
 
-namespace PersonApi.Services
+namespace PersonApiDAL.Services
 {
     public class PersonService : IPersonService
     {

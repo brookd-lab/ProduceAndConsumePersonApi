@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using PersonApi.Data;
-using PersonApi.Services;
+using PersonApiDAL.Context;
+using PersonApiDAL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

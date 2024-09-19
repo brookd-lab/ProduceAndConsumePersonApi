@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PersonApi.Models;
+﻿
+using Microsoft.EntityFrameworkCore;
+using PersonApiDAL.Models;
 
-namespace PersonApi.Data
+namespace PersonApiDAL.Context
 {
     public class ApiContext : DbContext
     {

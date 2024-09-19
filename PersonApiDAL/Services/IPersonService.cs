@@ -1,6 +1,6 @@
-﻿using PersonApi.Models;
+﻿using PersonApiDAL.Models;
 
-namespace PersonApi.Services
+namespace PersonApiDAL.Services
 {
     public interface IPersonService
     {
