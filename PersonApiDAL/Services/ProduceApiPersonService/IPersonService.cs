@@ -1,6 +1,6 @@
 ﻿using PersonApiDAL.Models;
 
-namespace PersonApiDAL.Services
+namespace PersonApiDAL.Services.ProduceApiPersonService
 {
     public interface IPersonService
     {

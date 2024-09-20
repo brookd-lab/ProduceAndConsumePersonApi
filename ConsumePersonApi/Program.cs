@@ -1,3 +1,5 @@
+using PersonApiDAL.Services.ConsumeApiPersonService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

@@ -2,7 +2,7 @@
 using PersonApiDAL.Context;
 using PersonApiDAL.Models;
 
-namespace PersonApiDAL.Services
+namespace PersonApiDAL.Services.ProduceApiPersonService
 {
     public class PersonService : IPersonService
     {

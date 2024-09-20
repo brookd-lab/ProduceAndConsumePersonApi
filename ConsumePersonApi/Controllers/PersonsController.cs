@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using PersonApiDAL.Models;
+using PersonApiDAL.Services.ConsumeApiPersonService;
 
 namespace ConsumePersonApi.Controllers
 {

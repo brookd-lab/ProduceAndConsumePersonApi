@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PersonApiDAL.Models;
-using PersonApiDAL.Services;
+using PersonApiDAL.Services.ProduceApiPersonService;
 using System;
 
 namespace PersonApi.Controllers
