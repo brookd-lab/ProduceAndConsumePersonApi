@@ -41,10 +41,11 @@ namespace PersonApi.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> CreatePerson(Person person)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> CreatePerson(Person person)
         {
             await _personService.CreatePerson(person);
-            return new JsonResult(person);
+            return CreatedAtAction(nameof(CreatePerson), new { id = person.Id }, person);
         }
 
         [HttpPut]
