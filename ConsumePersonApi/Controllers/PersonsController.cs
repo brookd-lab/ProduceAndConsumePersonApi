@@ -8,27 +8,27 @@ namespace ConsumePersonApi.Controllers
     public class PersonsController : Controller
     {
         HttpClient _client;
-        string _url;
-        public PersonsController(IConfiguration config)
+        private readonly PersonService _personService;
+
+        public PersonsController(
+            IConfiguration config,
+            PersonService personService)
         {
             var handler = new HttpClientHandler();
             _client = new HttpClient(handler);
-            _url = config["BaseUrl"]!;
+            _personService = personService;
+            _personService._url = config["BaseUrl"]!;
         }
 
         public async Task<IActionResult> Index()
         {
-            var url = $@"{_url}/GetAllPeople";
-            var data = await _client.GetStringAsync(url);
-            var persons = JsonConvert.DeserializeObject<IEnumerable<Person>>(data)!;
+            var persons = await _personService.GetAllPeople();
             return View(persons);
         }
 
         public async Task<IActionResult> Details(int? id)
         {
-            var url = $@"{_url}/GetPerson/{id}";
-            var data = await _client.GetStringAsync(url);
-            var person = JsonConvert.DeserializeObject<Person>(data)!;
+            var person = await _personService.GetPerson(id);
             return View(person);
         }
 
@@ -41,11 +41,9 @@ namespace ConsumePersonApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Person person)
         {
-            var url = $@"{_url}/CreatePerson";
-
             if (ModelState.IsValid)
             {
-                await _client.PostAsJsonAsync<Person>(url, person);
+                await _personService.CreatePerson(person);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -54,10 +52,7 @@ namespace ConsumePersonApi.Controllers
 
         public async Task<IActionResult> Edit(int? id)
         {
-            var url = $@"{_url}/GetPerson/{id}";
-
-            // Consume API
-            var person = JsonConvert.DeserializeObject<Person>(await _client.GetStringAsync(url));
+            var person = await _personService.GetPerson(id);
             return View(person);
         }
 
@@ -65,18 +60,9 @@ namespace ConsumePersonApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Person person)
         {
-            var url = $@"{_url}/UpdatePerson";
             if (ModelState.IsValid)
             {
-                try
-                {
-                    // Consume API
-                    await _client.PutAsJsonAsync<Person>(url, person);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
+                await _personService.UpdatePerson(person);
                 return RedirectToAction(nameof(Index));
             }
             return View(person);
@@ -84,10 +70,7 @@ namespace ConsumePersonApi.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
-            var url = $@"{_url}/GetPerson/{id}";
-            // Consume API
-            var person = JsonConvert.DeserializeObject<Person>(await _client.GetStringAsync(url));
-
+            var person = await _personService.GetPerson(id);
             return View(person);
         }
 
@@ -96,9 +79,7 @@ namespace ConsumePersonApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var url = $@"{_url}/DeletePerson/{id}";
-            await _client.DeleteAsync(url);
-
+            await _personService.DeletePerson(id);
             return RedirectToAction(nameof(Index));
         }
     }
